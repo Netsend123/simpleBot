@@ -22,10 +22,10 @@ public class Bot extends TelegramLongPollingBot {
 
     public void onUpdateReceived(Update update) {
         if (update.hasMessage()) {
-            if (update.getMessage().hasText() & update.getMessage().getText().equals("Hello")) {
+            if (update.getMessage().hasText() & (update.getMessage().getText().equals("/start") || update.getMessage().getText().equals("New"))) {
                 state = 1;
                 try {
-                    execute(sendInlineKeyBoardMessageMeasure(update.getMessage().getChatId(), "kVt", "Amper", "Выберете единицы измерения"));
+                    execute(sendInlineKeyBoardMessageMeasure(update.getMessage().getChatId(), "kVt", "Amper", "Расчет сечения электрокабеля. Выберете единицы измерения"));
                 } catch (TelegramApiException e) {
                     e.printStackTrace();
                 }
@@ -35,7 +35,7 @@ public class Bot extends TelegramLongPollingBot {
                 iw = Double.valueOf(update.getMessage().getText());
                 SendMessage resout = new SendMessage();
                 resout.setChatId(String.valueOf(update.getMessage().getChatId()));
-                resout.setText(measure + " " + material + " " + " " + typeOfSet + " " + phase + " " + "результат - " + counter(iw));
+                resout.setText("Введенные параметры:\n" + material + ", " + " " + typeOfSet + ", " + "фаз-" + phase + ", " + "\nзначение - " + iw + " "+ measure+"\n" + " Pезультат - " + counter(iw) + " мм квадратных.\nДля повторного рассчета наберите или нажмите /start или New");
                 try {
                     execute(resout);
                 } catch (TelegramApiException e) {
@@ -46,7 +46,7 @@ public class Bot extends TelegramLongPollingBot {
             measure = update.getCallbackQuery().getData();
             state = 2;
             try {
-                execute(sendInlineKeyBoardMessageMeasure(update.getCallbackQuery().getMessage().getChatId(), "    1    ", "    3    ", "Выберете количество фаз"));
+                execute(sendInlineKeyBoardMessageMeasure(update.getCallbackQuery().getMessage().getChatId(), "1", "3", "Выберете количество фаз"));
             } catch (TelegramApiException e) {
                 e.printStackTrace();
             }
@@ -54,7 +54,7 @@ public class Bot extends TelegramLongPollingBot {
             phase = update.getCallbackQuery().getData();
             state = 3;
             try {
-                execute(sendInlineKeyBoardMessageMeasure(update.getCallbackQuery().getMessage().getChatId(), "     Cu     ", "     Al     ", "Выберете материал"));
+                execute(sendInlineKeyBoardMessageMeasure(update.getCallbackQuery().getMessage().getChatId(), "Cu", "Al", "Выберете материал"));
             } catch (TelegramApiException e) {
                 e.printStackTrace();
             }
@@ -104,21 +104,59 @@ public class Bot extends TelegramLongPollingBot {
     }
 
     public String counter(Double iw) {
-        Double i;
+        Double i = 0.0;
+        Double s = 0.0;
         if (measure.equals("kVt")) {
             i = iw * 220;
         } else {
             i = iw;
         }
-        return String.valueOf(i);
+        if (phase.equals("3")) {
+            i = i / 1.76;
+        }
+        if (typeOfSet.equals("Shtukaturka")) {
+            i = i * 0.9;
+        }
+
+        if (material.equals("Cu")) {
+            if (i < 19) s = 1.5;
+            else if (i >= 19 & i < 27) s = 2.5;
+            else if (i >= 27 & i < 38) s = 4D;
+            else if (i >= 38 & i < 46) s = 6D;
+            else if (i >= 70 & i < 85) s = 10d;
+            else if (i >= 85 & i < 115) s = 16d;
+            else if (i >= 115 & i < 135) s = 25d;
+            else if (i >= 135 & i < 175) s = 35d;
+            else if (i >= 175 & i < 215) s = 50d;
+            else if (i >= 215 & i < 260) s = 70d;
+            else if (i >= 260 & i < 300) s = 95d;
+            else s = 0d;
+        }
+
+        if (material.equals("Al")) {
+            if (i < 22) s = 2.5;
+            else if (i >= 22 & i < 28) s = 4D;
+            else if (i >= 28 & i < 36) s = 4D;
+            else if (i >= 36 & i < 50) s = 6D;
+            else if (i >= 50 & i < 60) s = 10d;
+            else if (i >= 60 & i < 85) s = 16d;
+            else if (i >= 85 & i < 100) s = 25d;
+            else if (i >= 100 & i < 135) s = 35d;
+            else if (i >= 135 & i < 165) s = 50d;
+            else if (i >= 165 & i < 200) s = 70d;
+            else if (i >= 200 & i < 230) s = 95d;
+            else s = 0d;
+        }
+
+        return String.valueOf(s);
     }
 
     public String getBotUsername() {
-        return "Calendarmybot";
+        return "raschetKabelya_bot";
     }
 
     public String getBotToken() {
-        return "5591926587:AAGkCF98mhP1OywllGY4GRzPf78AYrePE-k";
+        return "5512397953:AAFxM6b2CdoYRdYV8_oOhoxm_azj-k2AT_A";
     }
 }
 
