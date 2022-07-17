@@ -39,8 +39,12 @@
 
     <properties>
         <java.version>18</java.version>
-        <maven.compiler.source>3.1</maven.compiler.source>
-        <maven.compiler.target>3.1</maven.compiler.target>
+        <maven.compiler.source>3.6.2</maven.compiler.source>
+        <maven.compiler.target>3.6.2</maven.compiler.target>
+        <configuration>
+            <source>1.8</source>
+            <target>1.8</target>
+        </configuration>
     </properties>
 
 </project>
