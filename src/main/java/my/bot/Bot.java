@@ -6,7 +6,6 @@ import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKeyboardButton;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,9 +28,7 @@ public class Bot extends TelegramLongPollingBot {
                 } catch (TelegramApiException e) {
                     e.printStackTrace();
                 }
-
             } else {
-                state = 6;
                 iw = Double.valueOf(update.getMessage().getText());
                 SendMessage resout = new SendMessage();
                 resout.setChatId(String.valueOf(update.getMessage().getChatId()));
@@ -79,7 +76,6 @@ public class Bot extends TelegramLongPollingBot {
                 e.printStackTrace();
             }
         }
-
     }
 
     public SendMessage sendInlineKeyBoardMessageMeasure(long chatId, String v1, String v2, String txt) {
@@ -117,7 +113,6 @@ public class Bot extends TelegramLongPollingBot {
         if (typeOfSet.equals("Shtukaturka")) {
             i = i * 0.9;
         }
-
         if (material.equals("Cu")) {
             if (i < 19) s = 1.5;
             else if (i >= 19 & i < 27) s = 2.5;

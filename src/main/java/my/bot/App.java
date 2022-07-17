@@ -8,7 +8,6 @@ import org.telegram.telegrambots.meta.generics.BotSession;
 import org.telegram.telegrambots.updatesreceivers.DefaultBotSession;
 
 
-// Аннотация, которая объединяет в себя @Configuration, @EnableAutoConfiguration, @ComponentScan
 @SpringBootApplication
 public class App {
 
