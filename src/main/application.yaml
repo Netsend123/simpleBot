@@ -1,0 +1,5 @@
+telegram:
+api-url: "https://api.telegram.org/"
+webhook-path: "https://git.heroku.com/raschetkabbot.git"
+bot-name: "raschetKabelya_bot"
+bot-token: "5512397953:AAFxM6b2CdoYRdYV8_oOhoxm_azj-k2AT_A"
