@@ -101,7 +101,7 @@ public class Bot extends TelegramLongPollingBot {
 
     public String counter(Double iw) {
         Double i = 0.0;
-        Double s = 0.0;
+        String s = "";
         if (measure.equals("kVt")) {
             i = iw * 220;
         } else {
@@ -114,36 +114,36 @@ public class Bot extends TelegramLongPollingBot {
             i = i * 0.9;
         }
         if (material.equals("Cu")) {
-            if (i < 19) s = 1.5;
-            else if (i >= 19 & i < 27) s = 2.5;
-            else if (i >= 27 & i < 38) s = 4D;
-            else if (i >= 38 & i < 46) s = 6D;
-            else if (i >= 70 & i < 85) s = 10d;
-            else if (i >= 85 & i < 115) s = 16d;
-            else if (i >= 115 & i < 135) s = 25d;
-            else if (i >= 135 & i < 175) s = 35d;
-            else if (i >= 175 & i < 215) s = 50d;
-            else if (i >= 215 & i < 260) s = 70d;
-            else if (i >= 260 & i < 300) s = 95d;
-            else s = 0d;
+            if (i < 19) s = "1.5";
+            else if (i >= 19 & i < 27) s = "2.5";
+            else if (i >= 27 & i < 38) s = "4";
+            else if (i >= 38 & i < 46) s = "6";
+            else if (i >= 70 & i < 85) s = "10";
+            else if (i >= 85 & i < 115) s = "16";
+            else if (i >= 115 & i < 135) s = "25";
+            else if (i >= 135 & i < 175) s = "35";
+            else if (i >= 175 & i < 215) s = "50";
+            else if (i >= 215 & i < 260) s = "70";
+            else if (i >= 260 & i < 300) s = "95";
+            else s = "более 95";
         }
 
         if (material.equals("Al")) {
-            if (i < 22) s = 2.5;
-            else if (i >= 22 & i < 28) s = 4D;
-            else if (i >= 28 & i < 36) s = 4D;
-            else if (i >= 36 & i < 50) s = 6D;
-            else if (i >= 50 & i < 60) s = 10d;
-            else if (i >= 60 & i < 85) s = 16d;
-            else if (i >= 85 & i < 100) s = 25d;
-            else if (i >= 100 & i < 135) s = 35d;
-            else if (i >= 135 & i < 165) s = 50d;
-            else if (i >= 165 & i < 200) s = 70d;
-            else if (i >= 200 & i < 230) s = 95d;
-            else s = 0d;
+            if (i < 22) s = "2.5";
+            else if (i >= 22 & i < 28) s = "4";
+            else if (i >= 28 & i < 36) s = "4";
+            else if (i >= 36 & i < 50) s = "6";
+            else if (i >= 50 & i < 60) s = "10";
+            else if (i >= 60 & i < 85) s = "16";
+            else if (i >= 85 & i < 100) s = "25";
+            else if (i >= 100 & i < 135) s = "35";
+            else if (i >= 135 & i < 165) s = "50";
+            else if (i >= 165 & i < 200) s = "70";
+            else if (i >= 200 & i < 230) s = "95";
+            else s = "более 95";
         }
 
-        return String.valueOf(s);
+        return s;
     }
 
     public String getBotUsername() {
