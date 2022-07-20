@@ -131,15 +131,15 @@ public class Bot extends TelegramLongPollingBot {
         if (material.equals("Al")) {
             if (i < 22) s = "2.5";
             else if (i >= 22 & i < 28) s = "4";
-            else if (i >= 28 & i < 36) s = "4";
-            else if (i >= 36 & i < 50) s = "6";
-            else if (i >= 50 & i < 60) s = "10";
-            else if (i >= 60 & i < 85) s = "16";
-            else if (i >= 85 & i < 100) s = "25";
-            else if (i >= 100 & i < 135) s = "35";
-            else if (i >= 135 & i < 165) s = "50";
-            else if (i >= 165 & i < 200) s = "70";
-            else if (i >= 200 & i < 230) s = "95";
+            else if (i >= 28 & i < 36) s = "6";
+            else if (i >= 36 & i < 50) s = "10";
+            else if (i >= 50 & i < 60) s = "16";
+            else if (i >= 60 & i < 85) s = "25";
+            else if (i >= 85 & i < 100) s = "35";
+            else if (i >= 100 & i < 135) s = "50";
+            else if (i >= 135 & i < 165) s = "70";
+            else if (i >= 165 & i < 200) s = "95";
+            else if (i >= 200 & i < 230) s = "120";
             else s = "более 95";
         }
 
