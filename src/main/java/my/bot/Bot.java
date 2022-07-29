@@ -24,7 +24,7 @@ public class Bot extends TelegramLongPollingBot {
             if (update.getMessage().hasText() & (update.getMessage().getText().equals("/start") || update.getMessage().getText().equals("New"))) {
                 state = 1;
                 try {
-                    execute(sendInlineKeyBoardMessageMeasure(update.getMessage().getChatId(), "kVt", "Amper", "Расчет сечения электрокабеля. Выберете единицы измерения"));
+                    execute(sendInlineKeyBoardMessageMeasure(update.getMessage().getChatId(), "kWt", "Amper", "Расчет сечения электрокабеля. Выберете единицы измерения"));
                 } catch (TelegramApiException e) {
                     e.printStackTrace();
                 }
@@ -32,7 +32,7 @@ public class Bot extends TelegramLongPollingBot {
                 iw = Double.valueOf(update.getMessage().getText());
                 SendMessage resout = new SendMessage();
                 resout.setChatId(String.valueOf(update.getMessage().getChatId()));
-                resout.setText("Введенные параметры:\n" + material + ", " + " " + typeOfSet + ", " + "фаз-" + phase + ", " + "\nзначение - " + iw + " "+ measure+"\n" + " Pезультат - " + counter(iw) + " мм квадратных.\nДля повторного рассчета наберите или нажмите /start или New");
+                resout.setText("Введенные параметры:\n" + material + ", " + " " + typeOfSet + ", " + "фаз-" + phase + ", " + "\nзначение - " + iw + " "+ measure+"\n" + " Pезультат - " + counter(iw) + " мм квадратных.\nДля повторного рассчета наберите или нажмите /start");
                 try {
                     execute(resout);
                 } catch (TelegramApiException e) {
@@ -102,7 +102,7 @@ public class Bot extends TelegramLongPollingBot {
     public String counter(Double iw) {
         Double i = 0.0;
         String s = "";
-        if (measure.equals("kVt")) {
+        if (measure.equals("kWt")) {
             i = iw * 4.55;
         } else {
             i = iw;
