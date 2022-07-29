@@ -103,7 +103,7 @@ public class Bot extends TelegramLongPollingBot {
         Double i = 0.0;
         String s = "";
         if (measure.equals("kVt")) {
-            i = iw * 220;
+            i = iw * 4.55;
         } else {
             i = iw;
         }
@@ -140,7 +140,7 @@ public class Bot extends TelegramLongPollingBot {
             else if (i >= 135 & i < 165) s = "70";
             else if (i >= 165 & i < 200) s = "95";
             else if (i >= 200 & i < 230) s = "120";
-            else s = "более 95";
+            else s = "более 120";
         }
 
         return s;
